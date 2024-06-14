@@ -1,0 +1,122 @@
+Write a C program that accept integer and floating-point numbers with exponentiation.
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve()
+{
+    string s;
+    cin >> s;
+
+    int n=s.size();
+
+    if(s[0]<'0' || s[0]>'9')
+    {
+        cout << "Not Accepted" << endl;
+        return;
+    }
+
+    if(s[n-1]<'0' || s[n-1]>'9')
+    {
+        cout << "Not Accepted" << endl;
+        return;
+    }
+
+    char ch=s[0],ch1='.',dcount=0,ecount=0,signcount=0;
+
+    for(int i=1;i<n-1;i++)
+    {
+        if(s[i]>='0' && s[i]<='9')
+        {
+            if(ch=='.' ||(ch>='0' && ch<='9') || ch=='+' || ch=='-' || ch=='E')
+            {
+                ch=s[i];
+            }
+            else
+            {
+                cout << "Not Accepted" << endl;
+                return;
+            }
+        }
+        else if(s[i]=='.')
+        {
+            if(dcount==1)
+            {
+                cout << "Not Accepted" << endl;
+                return;
+            }
+            else
+            {
+                dcount++;
+                if(ch>='0' && ch<='9')
+                {
+                    ch=s[i];
+                }
+                else
+                {
+                    cout << "Not Accepted" << endl;
+                    return;
+                }
+            }
+        }
+        else if(s[i]=='E')
+        {
+            if(ecount==1)
+            {
+                cout << "Not Accepted" << endl;
+                return;
+            }
+            else
+            {
+                ecount++;
+                if(ch>='0' && ch<='9')
+                {
+                    ch=s[i];
+                }
+                else
+                {
+                    cout << "Not Accepted" << endl;
+                    return;
+                }
+            }
+        }
+        else if(s[i]=='+' || s[i]=='-')
+        {
+            if(signcount==1)
+            {
+                cout << "Not Accepted" << endl;
+                return;
+            }
+            else
+            {
+                signcount++;
+                if((ch>='0' && ch<='9') || ch=='E')
+                {
+                    ch=s[i];
+                }
+                else
+                {
+                    cout << "Not Accepted" << endl;
+                    return;
+                }
+            }
+        }
+    }
+
+    cout << "Accepted" << endl;
+
+}
+int main()
+{
+    int t;
+    cin >> t;
+
+    while(t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
+
+
