@@ -1,3 +1,6 @@
+Write a Lex program that recognizes integer, floating-point numbers, and floating-point number
+with exponentiation.
+
 %{
     #include<stdio.h>
 %}
